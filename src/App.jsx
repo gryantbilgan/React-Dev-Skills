@@ -14,12 +14,18 @@ const initialSkills = [
 export default function App() {
   const [skills, setSkills] = useState(initialSkills)
   const [showSkills, setShowSkills] = useState(true)
+
+  function addSkill(skill) {
+    setSkills([...skills, skill])
+  }
+
   return (
     <div className="App">
       <h1 className="teal-text">React Dev Skills</h1>
-      <SkillList skills={skills}/>
+      <button onClick={() => setShowSkills(!showSkills)}>{showSkills ? "HIDE" : "SHOW"}</button>
+      {showSkills && <SkillList skills={skills}/>}
       <hr style={{width: "50vw"}} />
-      <NewSkillForm />
+      <NewSkillForm addSkill={addSkill}/>
     </div>
   )
 }
